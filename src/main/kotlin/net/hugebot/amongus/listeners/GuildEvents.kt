@@ -13,6 +13,7 @@ class GuildEvents : ListenerAdapter() {
 
     override fun onGuildMemberJoin(event: GuildMemberJoinEvent) {
         if (event.member.timeJoined.isBefore(OffsetDateTime.now().minusSeconds(30))) return
+        if (event.user.isBot) return
 
         event.user.openPrivateChannel().flatMap {
             buildWelcomeMessage(it, event)
