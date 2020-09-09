@@ -43,8 +43,11 @@ object Launcher {
         log.info("Starting ShardManager...")
         shardManager = DefaultShardManagerBuilder.createLight(token)
                 /*.addEventListeners(GuildEvents())*/
-                .enableCache(CacheFlag.MEMBER_OVERRIDES)
                 .enableIntents(GatewayIntent.GUILD_MEMBERS)
+                .enableCache(
+                        CacheFlag.MEMBER_OVERRIDES,
+                        CacheFlag.ACTIVITY
+                )
                 .build()
 
         //  Añadimos un ShutdownHook para cerrar de manera correcta los procesos de la aplicación
