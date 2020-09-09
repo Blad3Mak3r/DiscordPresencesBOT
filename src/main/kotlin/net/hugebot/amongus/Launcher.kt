@@ -41,7 +41,7 @@ object Launcher {
         //  Obtenemos el token desde los argumentos de ejecución o desde las variables de entorno
         log.info("Getting Discord Bot Token...")
         token = tryOrNull { args[0] } ?: System.getenv("DISCORD_TOKEN")
-        guildId = System.getenv("GUILD_ID")
+        guildId = tryOrNull { args[1] } ?: System.getenv("GUILD_ID")
 
         RestAction.setPassContext(false)
         RestAction.setDefaultFailure { }
