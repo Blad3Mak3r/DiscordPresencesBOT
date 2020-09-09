@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.PrivateChannel
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.requests.restaction.MessageAction
+import org.slf4j.LoggerFactory
 import java.awt.Color
 import java.time.OffsetDateTime
 
@@ -17,7 +18,11 @@ class GuildEvents : ListenerAdapter() {
 
         event.user.openPrivateChannel().flatMap {
             buildWelcomeMessage(it, event)
-        }.queue()
+        }.queue({
+            log.info("Se ha enviado un mensaje de bienvenida a ${event.user.asTag}[${event.user.id}]")
+        }, {
+            log.error("No se ha podido enviar el mensaje de bienvenida a ${event.user.asTag}[${event.user.id}]")
+        })
 
     }
 
@@ -56,10 +61,12 @@ class GuildEvents : ListenerAdapter() {
     }
 
     companion object {
-        const val RULES_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/753033046646718524"
-        const val INFO_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/751795851961303061"
-        const val SUGGESTIONS_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/752513733556830228"
-        const val ISSUES_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/753013605472927855"
-        const val SOCIAL_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/751811217793876092"
+        private val log = LoggerFactory.getLogger(GuildEvents::class.java)
+
+        private const val RULES_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/753033046646718524"
+        private const val INFO_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/751795851961303061"
+        private const val SUGGESTIONS_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/752513733556830228"
+        private const val ISSUES_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/753013605472927855"
+        private const val SOCIAL_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/751811217793876092"
     }
 }
