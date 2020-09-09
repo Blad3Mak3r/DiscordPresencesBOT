@@ -43,6 +43,7 @@ object Launcher {
         log.info("Starting ShardManager...")
         shardManager = DefaultShardManagerBuilder.createLight(token)
                 /*.addEventListeners(GuildEvents())*/
+                .addEventListeners(DiscordListeners())
                 .enableCache(
                         CacheFlag.MEMBER_OVERRIDES,
                         CacheFlag.ACTIVITY
