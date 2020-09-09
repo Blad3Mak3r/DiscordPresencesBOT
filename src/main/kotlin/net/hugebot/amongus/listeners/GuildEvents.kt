@@ -44,7 +44,7 @@ class GuildEvents : ListenerAdapter() {
                 appendLine("Puedes enviarnos tus [sugerencias](${SUGGESTIONS_TEXT_CHANNEL}) para mejorar la comunidad ♥.")
             }, false)
             addField("❯ Necesito ayuda", buildString {
-                appendLine("En caso de que necesites ayuda de cualquier tipo, no dudes en [escribirnos](${SUGGESTIONS_TEXT_CHANNEL})!!")
+                appendLine("En caso de que necesites ayuda de cualquier tipo, no dudes en [escribirnos](${HELP_TEXT_CHANNEL})!!")
             }, false)
             addField("❯ Tengo un problema...", buildString {
                 appendLine("No dudes en leer [nuestro canal](${ISSUES_TEXT_CHANNEL}) dedicado para esto.")
@@ -66,6 +66,7 @@ class GuildEvents : ListenerAdapter() {
         private const val RULES_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/753033046646718524"
         private const val INFO_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/751795851961303061"
         private const val SUGGESTIONS_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/752513733556830228"
+        private const val HELP_TEXT_CHANNEL = "https://discord.com/channels/619457585241653248/699366416872374403"
         private const val ISSUES_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/753013605472927855"
         private const val SOCIAL_TEXT_CHANNEL = "https://discordapp.com/channels/619457585241653248/751811217793876092"
     }
