@@ -15,12 +15,16 @@ class DiscordListeners : ListenerAdapter() {
         Launcher.schedulerAtFixedRate(Launcher.scheduler, log, 5, 300, TimeUnit.SECONDS) {
             log.info("Obteniendo RPCs de usuarios...")
 
-            val members = mutableSetOf<Member>()
-            val guilds = Launcher.shardManager.guilds
+            val guild = Launcher.shardManager.getGuildById(Launcher.guildId)!!
+            val members = guild.loadMembers().get()
 
-            guilds.map { members.addAll(it.loadMembers().get().toSet()) }
+            log.info("Se han obtenido un total de ${members.size} miembros de ${guild.name}")
 
-            val presences = members.mapNotNull { m -> m.activities.find { ac -> ac.isRich && ac.asRichPresence()!!.applicationIdLong == AMONGUS_APPID } }.count()
+            val presences = members.mapNotNull { m ->
+                m.activities.find {
+                    ac -> ac.isRich && ac.asRichPresence()!!.applicationIdLong == AMONGUS_APPID || ac.isRich && ac.asRichPresence()!!.name == "Among Us"
+                }
+            }.count()
 
             log.info("Se han obtenido $presences RPCs de usuarios jugando Among Us")
             Launcher.shardManager.setActivity(Activity.playing(if (presences > 0) "Among Us con $presences miembros!!" else "Among Us"))

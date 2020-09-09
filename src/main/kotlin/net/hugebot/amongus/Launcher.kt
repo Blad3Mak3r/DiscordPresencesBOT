@@ -21,7 +21,10 @@ object Launcher {
     internal val log = LoggerFactory.getLogger(Launcher::class.java)
     internal val scheduler = Executors.newSingleThreadScheduledExecutor()
 
-    lateinit var token: String
+    private lateinit var token: String
+        private set
+
+    internal lateinit var guildId: String
         private set
 
     lateinit var shardManager: ShardManager
@@ -38,6 +41,7 @@ object Launcher {
         //  Obtenemos el token desde los argumentos de ejecución o desde las variables de entorno
         log.info("Getting Discord Bot Token...")
         token = tryOrNull { args[0] } ?: System.getenv("DISCORD_TOKEN")
+        guildId = System.getenv("GUILD_ID")
 
         RestAction.setPassContext(false)
         RestAction.setDefaultFailure { }
