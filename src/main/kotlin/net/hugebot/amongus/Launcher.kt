@@ -38,7 +38,7 @@ object Launcher {
         log.info("Starting ShardManager...")
         shardManager = DefaultShardManagerBuilder.createLight(token)
                 .setActivity(Activity.playing("Among Us"))
-                .addEventListeners(GuildEvents())
+                /*.addEventListeners(GuildEvents())*/
                 .enableCache(CacheFlag.MEMBER_OVERRIDES)
                 .enableIntents(GatewayIntent.GUILD_MEMBERS)
                 .build()
