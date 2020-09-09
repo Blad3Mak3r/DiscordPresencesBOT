@@ -32,7 +32,7 @@ class GuildEvents : ListenerAdapter() {
             setColor(Color.red)
             setTitle("Bienvenido a **${event.guild.name}**")
             appendDescription("**${event.user.name}** estamos muy agradecidos de que hayas decidido unirte a la mayor comunidad de Among Us en español, " +
-                    "esperemos que lo pases en grande jugando con nosotros.")
+                    "esperamos que lo pases en grande jugando con nosotros.")
             addBlankField(false)
             addField("❯ Información", buildString {
                 appendLine("Lo primero de todo lee nuestro [canal de información](${INFO_TEXT_CHANNEL}) para saber todo lo necesario sobre el servidor.")
@@ -49,7 +49,7 @@ class GuildEvents : ListenerAdapter() {
             addField("❯ Tengo un problema...", buildString {
                 appendLine("No dudes en leer [nuestro canal](${ISSUES_TEXT_CHANNEL}) dedicado para esto.")
             }, false)
-            addField("❯ Y por último pero no menos important", buildString {
+            addField("❯ Y por último pero no menos importante", buildString {
                 appendLine("Visita nuestras [redes sociales](${SOCIAL_TEXT_CHANNEL}).")
             }, false)
             setThumbnail(event.guild.iconUrl)
