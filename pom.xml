@@ -49,7 +49,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>4.2.0_202</version>
+            <version>4.2.0_204</version>
             <exclusions>
                 <exclusion>
                     <groupId>club.minnced</groupId>
@@ -81,9 +81,37 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.1</version>
+
+                <configuration>
+                    <finalName>AmongUsEs</finalName>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>net.hugebot.amongus.Launcher</mainClass>
+                        </manifest>
+                    </archive>
                     <finalName>AmongUsEs</finalName>
                 </configuration>
             </plugin>

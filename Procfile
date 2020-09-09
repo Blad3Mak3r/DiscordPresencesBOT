@@ -1,1 +1,1 @@
-worker: java -jar target/AmongUsEs.jar
+worker: java -jar target/AmongUsEs-jar-with-dependencies.jar
