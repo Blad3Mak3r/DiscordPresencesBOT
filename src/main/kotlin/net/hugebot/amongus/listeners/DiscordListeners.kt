@@ -4,12 +4,20 @@ import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.events.ReadyEvent
+import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.hugebot.amongus.Launcher
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
 class DiscordListeners : ListenerAdapter() {
+
+    override fun onGuildJoin(event: GuildJoinEvent) {
+        if (event.guild.id != Launcher.guildId) {
+            log.info("Leaving guild ${event.guild.name}")
+            event.guild.leave().queue()
+        }
+    }
 
     override fun onReady(event: ReadyEvent) {
         Launcher.schedulerAtFixedRate(Launcher.scheduler, log, 5, 300, TimeUnit.SECONDS) {
