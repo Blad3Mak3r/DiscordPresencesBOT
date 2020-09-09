@@ -9,10 +9,15 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag
 import net.hugebot.amongus.listeners.GuildEvents
 import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.ScheduledFuture
+import java.util.concurrent.TimeUnit
 import javax.security.auth.login.LoginException
 
 object Launcher {
-    private val log = LoggerFactory.getLogger(Launcher::class.java)
+    internal val log = LoggerFactory.getLogger(Launcher::class.java)
+    internal val scheduler = Executors.newSingleThreadScheduledExecutor()
 
     lateinit var token: String
         private set
@@ -48,4 +53,19 @@ object Launcher {
             shardManager.shutdown()
         })
     }
-}
+
+    inline fun schedulerAtFixedRate(
+            scheduler: ScheduledExecutorService,
+            logger: Logger,
+            initialDelay: Long,
+            period: Long,
+            unit: TimeUnit,
+            crossinline block: () -> Unit
+    ): ScheduledFuture<*> = scheduler.scheduleAtFixedRate({
+            try {
+                block()
+            } catch (e: Throwable) {
+                logger.error("Error executing scheduled task: ${e.stackTraceToString()}")
+            }
+        }, initialDelay, period, unit)
+    }
