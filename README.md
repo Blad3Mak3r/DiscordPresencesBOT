@@ -1,10 +1,10 @@
 <img align="right" src="https://cdn.discordapp.com/avatars/753165290732257300/647b616a0fb48c5b45694fa8f8e46821.png?size=256" height="200" width="200">
 
-# Among Us ES [BOT]
+# Discord Presences BOT
  
-AmongUsS is a bot designed for the Among Us Spanish Discord server. You are free to compile this project and use it for your own benefit.
+**Discord Presences BOT** is a bot designed for the Among Us Spanish Discord server. You are free to fork the code, build the project and use it for your own benefit.
 
-This bot shows how many users are playing **Among Us** on the server.
+This bot shows how many users are playing **Among Us** on the server, or whatever game you define in [environment variables](#run-with-environment-variables).
 
 ## How to?
 
@@ -13,6 +13,15 @@ This project requires JVM 11 and Kotlin 1.4.0
 
 ### Discord Bot Token
 To be able to log in with a bot you need a Discord Bot Token, follow [our guide][DISCORD_BOT_TOKEN_WIKI] to get one and configure it correctly.
+
+### Game Name and Application ID
+|    Game Name    |   Application ID   |
+|-----------------|--------------------|
+| Among Us        | 746966631686733855 |
+| Fall Guys       | 742897755160313986 |
+| Overwatch       | 356875221078245376 |
+| Terraria        | 356943499456937984 |
+| Valorant        | 700136079562375258 |
 
 ### Compile
 Run the following command in your terminal to create a jar file:
