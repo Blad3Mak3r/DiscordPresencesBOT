@@ -9,7 +9,7 @@
     <version>0.1.0</version>
     <packaging>jar</packaging>
 
-    <name>AmongUsES</name>
+    <name>DPB - Discord Presences BOT</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -86,7 +86,7 @@
                             <mainClass>net.hugebot.presencesbot.Launcher</mainClass>
                         </manifest>
                     </archive>
-                    <finalName>AmongUsEs</finalName>
+                    <finalName>DPB</finalName>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
@@ -113,7 +113,7 @@
                             <mainClass>net.hugebot.presencesbot.Launcher</mainClass>
                         </manifest>
                     </archive>
-                    <finalName>AmongUsEs</finalName>
+                    <finalName>DPB</finalName>
                 </configuration>
             </plugin>
             <plugin>

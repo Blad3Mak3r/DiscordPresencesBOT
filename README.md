@@ -28,7 +28,7 @@ Run the following command in your terminal to create a jar file:
 ```shell
 $ mvn package
 ```
-Once the project is packaged, two **.jar** files will be created in the **target** folder, the jar with all the dependencies and manifest is **AmongUsES-jar-with-dependencies.jar**.
+Once the project is packaged, two **.jar** files will be created in the **target** folder, the jar with all the dependencies and manifest is **DPB-jar-with-dependencies.jar**.
 
 ### Run the bot
 To run the bot you need to define two environment variables or by default include their values as execution arguments.
@@ -44,7 +44,7 @@ To run the bot you need to define two environment variables or by default includ
 
 #### Run with execution arguments
 ```shell
-$ java -jar target/AmongUsES-jar-with-dependencies.jar [DISCORD_TOKEN] [GUILD_ID]
+$ java -jar target/DPB-jar-with-dependencies.jar [DISCORD_TOKEN] [GUILD_ID]
 ```
 ``Replace the names with the values and do not include the []``
 

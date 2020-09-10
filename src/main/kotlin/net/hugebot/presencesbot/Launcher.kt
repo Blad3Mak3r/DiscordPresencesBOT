@@ -28,7 +28,7 @@ object Launcher {
     @ExperimentalStdlibApi
     @JvmStatic
     fun main(args: Array<String>) {
-        Thread.currentThread().name = "AmongUs-Main"
+        Thread.currentThread().name = "DiscordPresences-MAIN"
         System.setProperty("java.net.preferIPv4Stack", "true")
 
         //  Obtenemos el token desde los argumentos de ejecución o desde las variables de entorno
