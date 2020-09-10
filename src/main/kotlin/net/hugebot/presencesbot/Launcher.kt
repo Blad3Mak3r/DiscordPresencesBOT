@@ -1,11 +1,13 @@
 package net.hugebot.presencesbot
 
+import com.xenomachina.argparser.ArgParser
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.utils.cache.CacheFlag
+import net.hugebot.presencesbot.listeners.ApplicationArguments
 import net.hugebot.presencesbot.listeners.DiscordListeners
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -28,15 +30,16 @@ object Launcher {
     @ExperimentalStdlibApi
     @JvmStatic
     fun main(args: Array<String>) {
+        val arguments = ArgParser(args).parseInto(::ApplicationArguments)
         Thread.currentThread().name = "DiscordPresences-MAIN"
         System.setProperty("java.net.preferIPv4Stack", "true")
 
         //  Obtenemos el token desde los argumentos de ejecución o desde las variables de entorno
         log.info("Getting Discord Bot Token...")
-        val token = tryOrNull { args[0] } ?: System.getenv("DISCORD_TOKEN")
+        val token = tryOrNull { arguments.token.value.takeIf { it.isNotEmpty() } } ?: System.getenv("DISCORD_TOKEN")
 
         log.info("Getting Guild ID...")
-        val guildId = tryOrNull { args[1] } ?: System.getenv("GUILD_ID")
+        val guildId = tryOrNull { arguments.guildId.value.takeIf { it.isNotEmpty() } } ?: System.getenv("GUILD_ID")
 
         RestAction.setPassContext(false)
         RestAction.setDefaultFailure { }
