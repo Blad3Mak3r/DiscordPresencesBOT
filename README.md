@@ -18,6 +18,7 @@ To be able to log in with a bot you need a Discord Bot Token, follow [our guide]
 |    Game Name       |   Application ID   |
 |--------------------|--------------------|
 | Among Us           | 746966631686733855 |
+| Borderlands 3      | 514228311661084682 |
 | Fall Guys          | 742897755160313986 |
 | Grand Theft Auto V | 356876176465199104 |
 | Minecraft          | 356875570916753438 |
