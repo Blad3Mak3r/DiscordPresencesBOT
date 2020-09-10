@@ -11,6 +11,9 @@ This bot shows how many users are playing **Among Us** on the server.
 ### Prerequisites
 This project requires JVM 11 and Kotlin 1.4.0
 
+### Discord Bot Token
+To be able to log in with a bot you need a Discord Bot Token, follow [our guide][DISCORD_BOT_TOKEN_WIKI] to get one and configure it correctly.
+
 ### Compile
 Run the following command in your terminal to create a jar file:
 ```shell
@@ -32,3 +35,5 @@ To run the bot you need to define two environment variables or by default includ
 $ java -jar target/AmongUsES-jar-with-dependencies.jar [DISCORD_TOKEN] [GUILD_ID]
 ```
 ``Replace the names with the values and do not include the []``
+
+[DISCORD_BOT_TOKEN_WIKI]: https://github.com/Blad3Mak3r/AmongUsES/wiki/Get-a-Discord-Bot-Token
