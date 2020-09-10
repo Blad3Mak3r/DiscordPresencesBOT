@@ -39,13 +39,15 @@ To run the bot you need to define two environment variables or by default includ
 |-------------------|-----------------------------------------------------------------------|-------------------------------|
 | DISCORD_TOKEN     | A Discord bot token.                                                  | ``null``                      |
 | GUILD_ID          | The ID of the Discord server for which you are going to use this bot. | ``null``                      |
+| CHANNEL_ID        | The ID of a valid voice channel which can be edited by the bot.       | ``null`` [Not required]       |
 | GAME_ID           | A valid Discord's Snowflake Application ID                            | 746966631686733855            |
 | GAME_NAME         | The game name                                                         | Among us                      |
 | PRESENCE_TEMPLATE | A string containing "{game}" and "{count}"                            | {game} with {count} members!! |
+| CHANNEL_TEMPLATE  | A string containing "{game}" and "{count}"                            | {game}: {count}               |
 
 #### Run with execution arguments
 ```shell
-$ java -jar target/DPB-jar-with-dependencies.jar [DISCORD_TOKEN] [GUILD_ID]
+$ java -jar target/DPB-jar-with-dependencies.jar [DISCORD_TOKEN] [GUILD_ID] (CHANNEL_ID)
 ```
 ``Replace the names with the values and do not include the []``
 

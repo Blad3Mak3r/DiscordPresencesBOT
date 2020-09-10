@@ -33,10 +33,17 @@ object Launcher {
 
         //  Obtenemos el token desde los argumentos de ejecución o desde las variables de entorno
         log.info("Getting Discord Bot Token...")
-        val token = tryOrNull { args[0] } ?: System.getenv("DISCORD_TOKEN")
+        val token = tryOrNull { args[0] } ?: System.getenv("DISCORD_TOKEN") ?: throw IllegalArgumentException("Discord Bot Token cannot be null.")
+        log.info("Got Discord Bot Token!")
 
         log.info("Getting Guild ID...")
-        val guildId = tryOrNull { args[1] } ?: System.getenv("GUILD_ID")
+        val guildId = tryOrNull { args[1] } ?: System.getenv("GUILD_ID") ?: throw IllegalArgumentException("Guild ID cannot be null.")
+        log.info("Got Guild ID!")
+
+        log.info("Getting Channel ID...")
+        val channelId = tryOrNull { args[2] } ?: System.getenv("CHANNEL_ID")
+        if (channelId != null) log.info("Got Channel ID!\n")
+        else log.warn("Channel ID not defined.")
 
         RestAction.setPassContext(false)
         RestAction.setDefaultFailure { }
@@ -44,7 +51,7 @@ object Launcher {
         log.info("Starting JDA instance...")
 
         jda = JDABuilder.createLight(token)
-                .addEventListeners(DiscordListeners(guildId))
+                .addEventListeners(DiscordListeners(guildId, channelId))
                 .enableCache(
                         CacheFlag.MEMBER_OVERRIDES,
                         CacheFlag.ACTIVITY
