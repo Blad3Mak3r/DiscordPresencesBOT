@@ -2,7 +2,7 @@
 
 # Discord Presences BOT
  
-**Discord Presences BOT** is a bot designed for the Among Us Spanish Discord server. You are free to compile this project and use it for your own benefit.
+**Discord Presences BOT** is a bot designed for the Among Us Spanish Discord server. You are free to fork the code, build the project and use it for your own benefit.
 
 This bot shows how many users are playing **Among Us** on the server, or whatever game you define in [environment variables](#run-with-environment-variables).
 
