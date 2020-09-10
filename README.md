@@ -25,10 +25,13 @@ Once the project is packaged, two **.jar** files will be created in the **target
 To run the bot you need to define two environment variables or by default include their values as execution arguments.
 
 #### Run with Environment Variables
-| ENV NAME      | VALUE                                                                 |
-|---------------|-----------------------------------------------------------------------|
-| DISCORD_TOKEN | A Discord bot token.                                                  |
-| GUILD_ID      | The ID of the Discord server for which you are going to use this bot. |
+| ENV NAME          | VALUE                                                                 | Default Value                 |
+|-------------------|-----------------------------------------------------------------------|-------------------------------|
+| DISCORD_TOKEN     | A Discord bot token.                                                  | ``null``                      |
+| GUILD_ID          | The ID of the Discord server for which you are going to use this bot. | ``null``                      |
+| GAME_ID           | A valid Discord's Snowflake Application ID                            | 746966631686733855            |
+| GAME_NAME         | The game name                                                         | Among us                      |
+| PRESENCE_TEMPLATE | A string containing "{game}" and "{count}"                            | {game} with {count} members!! |
 
 #### Run with execution arguments
 ```shell
