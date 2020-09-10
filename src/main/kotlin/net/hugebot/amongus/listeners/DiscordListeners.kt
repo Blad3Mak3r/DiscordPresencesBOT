@@ -1,16 +1,17 @@
 package net.hugebot.amongus.listeners
 
-import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
-import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.events.ReadyEvent
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.hugebot.amongus.Launcher
+import net.hugebot.amongus.tryOrNull
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
 class DiscordListeners : ListenerAdapter() {
+
+    private var lastPresence: Int? = null
 
     override fun onGuildJoin(event: GuildJoinEvent) {
         if (event.guild.id != Launcher.guildId) {
@@ -20,28 +21,36 @@ class DiscordListeners : ListenerAdapter() {
     }
 
     override fun onReady(event: ReadyEvent) {
-        Launcher.schedulerAtFixedRate(Launcher.scheduler, log, 5, 300, TimeUnit.SECONDS) {
-            log.info("Obteniendo RPCs de usuarios...")
+        Launcher.scheduleAtFixedRate(Launcher.scheduler, log, 5, 300, TimeUnit.SECONDS) {
 
-            val guild = Launcher.shardManager.getGuildById(Launcher.guildId)!!
+            val guild = Launcher.getGuildById(Launcher.guildId)!!
             val members = guild.loadMembers().get()
 
-            log.info("Se han obtenido un total de ${members.size} miembros de ${guild.name}")
+            log.info("Getting RPCs from ${members.size} users within \"${guild.name}\"...")
 
             val presences = members.mapNotNull { m ->
                 m.activities.find {
-                    ac -> ac.isRich && ac.asRichPresence()!!.applicationIdLong == AMONGUS_APPID || ac.isRich && ac.asRichPresence()!!.name == "Among Us"
+                    ac -> ac.isRich && ac.asRichPresence()!!.applicationId == GAME_ID || ac.isRich && ac.asRichPresence()!!.name == GAME_NAME
                 }
             }.count()
 
-            log.info("Se han obtenido $presences RPCs de usuarios jugando Among Us")
-            Launcher.shardManager.setActivity(Activity.playing(if (presences > 0) "Among Us con $presences miembros!!" else "Among Us"))
+            if (lastPresence == null || presences != lastPresence) {
+                log.info("$presences RPCs have been obtained from users playing $GAME_NAME in \"${guild.name}\", updating presence...")
+                Launcher.setActivity(Activity.playing(PRESENCE_TEMPLATE
+                        .replace("{game}", GAME_NAME, true)
+                        .replace("{count}", presences.toString(), true)))
+            } else {
+                log.info("$presences RPCs have been obtained from users playing $GAME_NAME in \"${guild.name}\", not updating because the old count was equal...")
+            }
+            lastPresence = presences
         }
     }
 
     companion object {
         private val log = LoggerFactory.getLogger(DiscordListeners::class.java)
 
-        private val AMONGUS_APPID = 746966631686733855L
+        private val GAME_ID = tryOrNull { System.getenv("GAME_ID") } ?: "746966631686733855"
+        private val GAME_NAME = tryOrNull { System.getenv("GAME_NAME") } ?: "Among Us"
+        private val PRESENCE_TEMPLATE = tryOrNull { System.getenv("PRESENCE_TEMPLATE") } ?: "{game} with {count} members!!"
     }
 }
