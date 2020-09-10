@@ -1,13 +1,12 @@
 package net.hugebot.amongus
 
+import net.dv8tion.jda.api.JDA
+import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.requests.RestAction
-import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
-import net.dv8tion.jda.api.sharding.ShardManager
 import net.dv8tion.jda.api.utils.cache.CacheFlag
 import net.hugebot.amongus.listeners.DiscordListeners
-import net.hugebot.amongus.listeners.GuildEvents
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
@@ -18,7 +17,7 @@ import java.util.concurrent.TimeUnit
 import javax.security.auth.login.LoginException
 
 object Launcher {
-    internal val log = LoggerFactory.getLogger(Launcher::class.java)
+    private val log = LoggerFactory.getLogger(Launcher::class.java)
     internal val scheduler = Executors.newSingleThreadScheduledExecutor()
 
     private lateinit var token: String
@@ -27,7 +26,7 @@ object Launcher {
     internal lateinit var guildId: String
         private set
 
-    lateinit var shardManager: ShardManager
+    lateinit var jda: JDA
         private set
 
 
@@ -46,9 +45,9 @@ object Launcher {
         RestAction.setPassContext(false)
         RestAction.setDefaultFailure { }
 
-        log.info("Starting ShardManager...")
-        shardManager = DefaultShardManagerBuilder.createLight(token)
-                /*.addEventListeners(GuildEvents())*/
+        log.info("Starting JDA instance...")
+
+        jda = JDABuilder.createLight(token)
                 .addEventListeners(DiscordListeners())
                 .enableCache(
                         CacheFlag.MEMBER_OVERRIDES,
@@ -62,12 +61,19 @@ object Launcher {
 
         //  Añadimos un ShutdownHook para cerrar de manera correcta los procesos de la aplicación
         Runtime.getRuntime().addShutdownHook(Thread {
-            log.info("Shutting down shard manager...")
-            shardManager.shutdown()
+            log.info("Shutting down JDA instance...")
+            jda.shutdown()
         })
     }
 
-    inline fun schedulerAtFixedRate(
+    fun getGuildById(id: String) = jda.getGuildById(id)
+    fun getGuildById(id: Long) = jda.getGuildById(id)
+
+    fun setActivity(activity: Activity) {
+        jda.presence.activity = activity
+    }
+
+    inline fun scheduleAtFixedRate(
             scheduler: ScheduledExecutorService,
             logger: Logger,
             initialDelay: Long,
