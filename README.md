@@ -14,7 +14,7 @@ This project requires JVM 11 and Kotlin 1.4.0
 ### Discord Bot Token
 To be able to log in with a bot you need a Discord Bot Token, follow [our guide][DISCORD_BOT_TOKEN_WIKI] to get one and configure it correctly.
 
-### Game Name and Application ID
+### Known Game Name and Application ID
 |    Game Name       |   Application ID   |
 |--------------------|--------------------|
 | Among Us           | 746966631686733855 |
