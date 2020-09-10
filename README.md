@@ -19,6 +19,7 @@ To be able to log in with a bot you need a Discord Bot Token, follow [our guide]
 |-----------------|--------------------|
 | Among Us        | 746966631686733855 |
 | Fall Guys       | 742897755160313986 |
+| Minecraft       | 356875570916753438 |
 | Overwatch       | 356875221078245376 |
 | Terraria        | 356943499456937984 |
 | Valorant        | 700136079562375258 |
