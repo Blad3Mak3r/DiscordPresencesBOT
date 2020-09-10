@@ -1,4 +1,4 @@
-package net.hugebot.amongus
+package net.hugebot.presencesbot
 
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.requests.GatewayIntent
 import net.dv8tion.jda.api.requests.RestAction
 import net.dv8tion.jda.api.utils.cache.CacheFlag
-import net.hugebot.amongus.listeners.DiscordListeners
+import net.hugebot.presencesbot.listeners.DiscordListeners
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
@@ -19,12 +19,6 @@ import javax.security.auth.login.LoginException
 object Launcher {
     private val log = LoggerFactory.getLogger(Launcher::class.java)
     internal val scheduler = Executors.newSingleThreadScheduledExecutor()
-
-    private lateinit var token: String
-        private set
-
-    internal lateinit var guildId: String
-        private set
 
     lateinit var jda: JDA
         private set
@@ -39,8 +33,10 @@ object Launcher {
 
         //  Obtenemos el token desde los argumentos de ejecución o desde las variables de entorno
         log.info("Getting Discord Bot Token...")
-        token = tryOrNull { args[0] } ?: System.getenv("DISCORD_TOKEN")
-        guildId = tryOrNull { args[1] } ?: System.getenv("GUILD_ID")
+        val token = tryOrNull { args[0] } ?: System.getenv("DISCORD_TOKEN")
+
+        log.info("Getting Guild ID...")
+        val guildId = tryOrNull { args[1] } ?: System.getenv("GUILD_ID")
 
         RestAction.setPassContext(false)
         RestAction.setDefaultFailure { }
@@ -48,7 +44,7 @@ object Launcher {
         log.info("Starting JDA instance...")
 
         jda = JDABuilder.createLight(token)
-                .addEventListeners(DiscordListeners())
+                .addEventListeners(DiscordListeners(guildId))
                 .enableCache(
                         CacheFlag.MEMBER_OVERRIDES,
                         CacheFlag.ACTIVITY

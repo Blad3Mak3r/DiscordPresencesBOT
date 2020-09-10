@@ -83,7 +83,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>net.hugebot.amongus.Launcher</mainClass>
+                            <mainClass>net.hugebot.presencesbot.Launcher</mainClass>
                         </manifest>
                     </archive>
                     <finalName>AmongUsEs</finalName>
@@ -110,7 +110,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>net.hugebot.amongus.Launcher</mainClass>
+                            <mainClass>net.hugebot.presencesbot.Launcher</mainClass>
                         </manifest>
                     </archive>
                     <finalName>AmongUsEs</finalName>

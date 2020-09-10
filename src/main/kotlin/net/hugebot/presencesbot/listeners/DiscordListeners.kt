@@ -1,20 +1,20 @@
-package net.hugebot.amongus.listeners
+package net.hugebot.presencesbot.listeners
 
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.events.ReadyEvent
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
-import net.hugebot.amongus.Launcher
-import net.hugebot.amongus.tryOrNull
+import net.hugebot.presencesbot.Launcher
+import net.hugebot.presencesbot.tryOrNull
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
-class DiscordListeners : ListenerAdapter() {
+class DiscordListeners(private val guildId: String) : ListenerAdapter() {
 
     private var lastPresence: Int? = null
 
     override fun onGuildJoin(event: GuildJoinEvent) {
-        if (event.guild.id != Launcher.guildId) {
+        if (event.guild.id != guildId) {
             log.info("Leaving guild ${event.guild.name}")
             event.guild.leave().queue()
         }
@@ -23,7 +23,7 @@ class DiscordListeners : ListenerAdapter() {
     override fun onReady(event: ReadyEvent) {
         Launcher.scheduleAtFixedRate(Launcher.scheduler, log, 5, 300, TimeUnit.SECONDS) {
 
-            val guild = Launcher.getGuildById(Launcher.guildId)!!
+            val guild = Launcher.getGuildById(guildId)!!
             val members = guild.loadMembers().get()
 
             log.info("Getting RPCs from ${members.size} users within \"${guild.name}\"...")
