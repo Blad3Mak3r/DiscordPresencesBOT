@@ -1,10 +1,10 @@
 <img align="right" src="https://cdn.discordapp.com/avatars/753165290732257300/647b616a0fb48c5b45694fa8f8e46821.png?size=256" height="200" width="200">
 
-# Among Us ES [BOT]
+# Among Us Presences [BOT]
  
-AmongUsS is a bot designed for the Among Us Spanish Discord server. You are free to compile this project and use it for your own benefit.
+**Among Us Presences** is a bot designed for the Among Us Spanish Discord server. You are free to compile this project and use it for your own benefit.
 
-This bot shows how many users are playing **Among Us** on the server.
+This bot shows how many users are playing **Among Us** on the server, or whatever game you define in [environment variables](#run-with-environment-variables).
 
 ## How to?
 
