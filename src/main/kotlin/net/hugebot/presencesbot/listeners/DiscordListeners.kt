@@ -40,7 +40,7 @@ class DiscordListeners(private val guildId: String, private val channelId: Strin
             }.count()
 
             if (lastPresence == null || presences != lastPresence) {
-                log.info("$presences RPCs have been obtained from users playing $GAME_NAME in \"${guild.name}\", updating presence...")
+                log.info("$presences RPCs have been obtained from users playing \"$GAME_NAME\" in \"${guild.name}\", updating presence...")
                 Launcher.setActivity(Activity.playing(buildPresenceTemplate(presences)))
 
                 if (voiceChannel != null) {
@@ -53,7 +53,7 @@ class DiscordListeners(private val guildId: String, private val channelId: Strin
                     }
                 }
             } else {
-                log.info("$presences RPCs have been obtained from users playing $GAME_NAME in \"${guild.name}\", not updating because the old count was equal...")
+                log.info("$presences RPCs have been obtained from users playing \"$GAME_NAME\" in \"${guild.name}\", not updating because the old count was equal...")
             }
             lastPresence = presences
         }
