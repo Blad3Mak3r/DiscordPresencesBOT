@@ -49,4 +49,4 @@ $ java -jar target/DPB-jar-with-dependencies.jar [DISCORD_TOKEN] [GUILD_ID]
 ```
 ``Replace the names with the values and do not include the []``
 
-[DISCORD_BOT_TOKEN_WIKI]: https://github.com/Blad3Mak3r/AmongUsES/wiki/Get-a-Discord-Bot-Token
+[DISCORD_BOT_TOKEN_WIKI]: https://github.com/Blad3Mak3r/DiscordPresencesBOT/wiki/Get-a-Discord-Bot-Token

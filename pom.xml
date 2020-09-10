@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.hugebot</groupId>
-    <artifactId>AmongUsES</artifactId>
-    <version>0.1.0</version>
+    <artifactId>DiscordPresencesBOT</artifactId>
+    <version>0.1.4</version>
     <packaging>jar</packaging>
 
     <name>DPB - Discord Presences BOT</name>
