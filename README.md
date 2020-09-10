@@ -15,14 +15,15 @@ This project requires JVM 11 and Kotlin 1.4.0
 To be able to log in with a bot you need a Discord Bot Token, follow [our guide][DISCORD_BOT_TOKEN_WIKI] to get one and configure it correctly.
 
 ### Game Name and Application ID
-|    Game Name    |   Application ID   |
-|-----------------|--------------------|
-| Among Us        | 746966631686733855 |
-| Fall Guys       | 742897755160313986 |
-| Minecraft       | 356875570916753438 |
-| Overwatch       | 356875221078245376 |
-| Terraria        | 356943499456937984 |
-| Valorant        | 700136079562375258 |
+|    Game Name       |   Application ID   |
+|--------------------|--------------------|
+| Among Us           | 746966631686733855 |
+| Fall Guys          | 742897755160313986 |
+| Grand Theft Auto V | 356876176465199104 |
+| Minecraft          | 356875570916753438 |
+| Overwatch          | 356875221078245376 |
+| Terraria           | 356943499456937984 |
+| Valorant           | 700136079562375258 |
 
 ### Compile
 Run the following command in your terminal to create a jar file:
